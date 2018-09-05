@@ -2,24 +2,27 @@ package com.forfuture.zxg.network;
 
 public class BaseResponse<T> {
 
-    private int code;
-    private String msg;
+
     private T data;
 
-    public int getCode() {
-        return code;
+    private String errMsg;
+
+    private int errCode;
+
+    public String getErrMsg() {
+        return errMsg;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
-    public String getMsg() {
-        return msg;
+    public int getErrCode() {
+        return errCode;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setErrCode(int errCode) {
+        this.errCode = errCode;
     }
 
     public T getData() {
@@ -29,9 +32,4 @@ public class BaseResponse<T> {
     public void setData(T data) {
         this.data = data;
     }
-
-    public boolean isOk() {
-        return code == 0;
-    }
-
 }
