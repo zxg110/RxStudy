@@ -1,6 +1,7 @@
 package com.forfuture.zxg.network.Rx;
 
 import com.forfuture.zxg.network.BaseResponse;
+import com.forfuture.zxg.network.DisposableWrapper;
 import com.forfuture.zxg.network.exception.ApiException;
 import com.forfuture.zxg.network.exception.ExceptionHandler;
 
@@ -31,7 +32,7 @@ public abstract class RxObserver<T> implements Observer<BaseResponse<T>> {
 
 
     @Override
-    public void onNext(BaseResponse<T> responseData) {
+    final public void onNext(BaseResponse<T> responseData) {
         try {
             if (responseData.getErrCode() != 0) {
                 ApiException e = new ApiException(responseData.getErrCode(), responseData.getErrMsg());
@@ -64,10 +65,10 @@ public abstract class RxObserver<T> implements Observer<BaseResponse<T>> {
 
     @Override
     public void onSubscribe(@NonNull Disposable disposable) {
-        onStart(disposable);
+        onStart((DisposableWrapper) disposable);
     }
 
-    protected abstract void onStart(Disposable disposable);
+    protected abstract void onStart(DisposableWrapper disposable);
 
     /**
      * 成功回调

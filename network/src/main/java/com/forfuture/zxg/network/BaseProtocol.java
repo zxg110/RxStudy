@@ -4,18 +4,17 @@ import com.forfuture.zxg.network.Rx.RxObserver;
 
 import java.util.Map;
 
-public abstract class BaseProtocol {
+public abstract class BaseProtocol<T> {
     public static final String METHOD_POST = "post";
     public static final String METHOD_GET = "get";
     public static final String METHOD_PUT = "put";
 
 
-    protected RxObserver<Object> observer;
 
 
     protected abstract String getUrl();
 
-    protected abstract RxObserver getRxObserver();
+    protected abstract RxObserver<T> getRxObserver();
 
     protected abstract Map<String, String> getArgs();
 
